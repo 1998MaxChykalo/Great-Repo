@@ -1,0 +1,53 @@
+<form [formGroup]="signoffForm" (submit)="submitForm($event)">
+  <div formGroupName="userData">
+    <label>
+      Name:
+      <input type="text" formControlName="name">
+    </label>
+    <div *ngIf="isRequired('userData.name')">
+      User name is required.
+    </div>
+    <label>
+      Email:
+      <input type="email" formControlName="email">
+    </label>
+    <div *ngIf="isRequired('userData.name')">
+      User email is required.
+    </div>
+  </div>
+  <label>
+    Secret Question:
+    <select formControlName="secretQuestion">
+      <option *ngFor="let question of questions" [value]='question.type'>
+        {{question.name}}
+      </option>
+    </select>
+  </label>
+  <label *ngIf="isSecretQuestionIsCustom">
+    Custom Question:
+    <input type="text" formControlName="customQuestion">
+  </label>
+  <div *ngIf="isRequired('customQuestion') && isSecretQuestionIsCustom">
+    Custom Question is required.
+  </div>
+  <label>
+    Answer:
+    <input type="text" formControlName="answer">
+  </label>
+  <div *ngIf="isRequired('answer')">
+    Answer is required.
+  </div>
+  <div>
+    Gender:
+    <label>
+      <input type="radio" value="male" formControlName="gender"> Male
+    </label>
+    <label>
+      <input type="radio" value="female" formControlName="gender"> Female
+    </label>
+    <div *ngIf="isRequired('gender')">
+      Gender is required.
+    </div>
+  </div>
+  <button type="submit" [disabled]="signoffForm.invalid">Submit</button>
+</form>

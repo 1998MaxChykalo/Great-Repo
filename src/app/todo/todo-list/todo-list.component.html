@@ -1,0 +1,9 @@
+<div *ngIf="todoList">
+  <p>Number Of Todos{{todoList.length}}</p>
+  <p *ngFor="let todo of todoList">
+    <app-todo-item [todo]="todo"
+                   (toggleTodo)="toggleTodo($event)"
+                   (delete)="deleteTodo($event)"
+    ></app-todo-item>
+  </p>
+</div>

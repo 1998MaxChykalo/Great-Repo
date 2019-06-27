@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {TodoDS} from './todo/todo-ds.service';
+import {ICreateTodoModel} from './todo/itodo';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularTestProject';
+  constructor(private todoDS: TodoDS) {}
+  createTodo(todo: ICreateTodoModel) {
+    this.todoDS.create(todo);
+  }
 }
