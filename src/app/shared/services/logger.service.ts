@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-export enum LogType {
+export enum LogLevel {
   default,
   warning,
   error
 }
-export const interface ILogger {
-  // log: funciton
-}
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LoggerService {
   private logFunctions = {
-    [LogType.error]: console.error,
-    [LogType.warning]: console.warn,
-    [LogType.default]: console.log,
+    [LogLevel.error]: console.error,
+    [LogLevel.warning]: console.warn,
+    [LogLevel.default]: console.log
   };
-  public log = (message: any, logType: LogType = LogType.default) => this.logFunctions[logType](message);
+  public log = (logLevel: LogLevel = LogLevel.default) => (message: any) =>
+    this.logFunctions[logLevel](message);
+  public logError = this.log(LogLevel.error);
+  public logWarning = this.log(LogLevel.warning);
+  public logInfo = this.log(LogLevel.default);
 }

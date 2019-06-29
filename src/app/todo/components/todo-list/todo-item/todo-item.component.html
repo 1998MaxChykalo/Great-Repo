@@ -1,0 +1,14 @@
+<mat-card style="display: flex; justify-content: space-between;">
+  <input type="checkbox" disabled [checked]="todo.isCompleted" />
+  <span [style.textDecoration]="todo.isCompleted ? 'line-through' : ''">{{
+    todo.name
+  }}</span>
+  <div class="actions">
+    <button mat-raised-button color="default" (click)="toggleCompleted()">
+      Toggle Completed
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteTodo()">
+      Delete
+    </button>
+  </div>
+</mat-card>

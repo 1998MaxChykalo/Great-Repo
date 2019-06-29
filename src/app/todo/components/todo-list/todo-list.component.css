@@ -1,0 +1,8 @@
+.todo-list__filters {
+  display: flex;
+  margin: auto;
+}
+
+.todo-list__filters > button {
+  flex: 1;
+}

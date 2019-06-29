@@ -1,0 +1,23 @@
+<form [formGroup]="createTodoForm" (submit)="createTodo()">
+  <h2>Create Todo:</h2>
+  <mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input
+      matInput
+      placeholder="Enter todo name"
+      formControlName="name"
+      required
+    />
+    <mat-error *ngIf="isRequired('name')">
+      Todo name is required.
+    </mat-error>
+  </mat-form-field>
+  <label>
+    <mat-checkbox type="checkbox" formControlName="isCompleted"
+      >completed</mat-checkbox
+    >
+  </label>
+  <button mat-raised-button type="submit" [disabled]="createTodoForm.invalid">
+    Submit
+  </button>
+</form>

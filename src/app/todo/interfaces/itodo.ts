@@ -1,9 +1,8 @@
-export type id = number;
+export type id = string;
 export interface IIndexable {
   id: id;
 }
-export interface ITodo extends IIndexable{
-  // id: id;
+export interface ITodo extends IIndexable {
   name: string;
   isCompleted: boolean;
 }

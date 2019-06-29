@@ -1,16 +1,12 @@
-import { Component } from '@angular/core';
-import {TodoDS} from './todo/todo-ds.service';
-import {ICreateTodoModel} from './todo/itodo';
-
+import { Component } from "@angular/core";
+import { routerTransition } from "./router.animations";
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  animations: [routerTransition],
+  templateUrl: "./app.component.html"
 })
 export class AppComponent {
-  title = 'angularTestProject';
-  constructor(private todoDS: TodoDS) {}
-  createTodo(todo: ICreateTodoModel) {
-    this.todoDS.create(todo);
-  }
+  getState = outlet => outlet.activatedRouteData.state;
+
+  title = "angularTestProject";
 }

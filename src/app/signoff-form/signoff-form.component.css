@@ -1,10 +1,9 @@
-label {
+form {
+  padding: 10px;
+}
+form > * {
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
   display: block;
-}
-.ng-valid.ng-dirty:not(form) {
-  border: solid 2px lightgreen;
-}
-
-.ng-invalid.ng-dirty:not(form), .ng-invalid:not(form).form-submitted {
-  border: solid 2px lightcoral;
 }

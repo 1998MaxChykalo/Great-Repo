@@ -1,53 +1,80 @@
-<form [formGroup]="signoffForm" (submit)="submitForm($event)">
-  <div formGroupName="userData">
-    <label>
-      Name:
-      <input type="text" formControlName="name">
-    </label>
-    <div *ngIf="isRequired('userData.name')">
-      User name is required.
-    </div>
-    <label>
-      Email:
-      <input type="email" formControlName="email">
-    </label>
-    <div *ngIf="isRequired('userData.name')">
-      User email is required.
-    </div>
+<form [formGroup]="signUpForm" (submit)="submitForm($event)">
+  <div
+    formGroupName="userData"
+    style="display: flex; flex-direction: column; align-items: stretch;"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter your name"
+        formControlName="name"
+        required
+      />
+      <mat-error *ngIf="isRequired('userData.name')">
+        User name is required.
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter your email"
+        formControlName="email"
+        required
+      />
+      <mat-error *ngIf="isRequired('userData.email')">
+        User email is required.
+      </mat-error>
+    </mat-form-field>
   </div>
-  <label>
-    Secret Question:
-    <select formControlName="secretQuestion">
-      <option *ngFor="let question of questions" [value]='question.type'>
-        {{question.name}}
-      </option>
-    </select>
-  </label>
-  <label *ngIf="isSecretQuestionIsCustom">
-    Custom Question:
-    <input type="text" formControlName="customQuestion">
-  </label>
-  <div *ngIf="isRequired('customQuestion') && isSecretQuestionIsCustom">
-    Custom Question is required.
-  </div>
-  <label>
-    Answer:
-    <input type="text" formControlName="answer">
-  </label>
-  <div *ngIf="isRequired('answer')">
-    Answer is required.
-  </div>
-  <div>
-    Gender:
-    <label>
-      <input type="radio" value="male" formControlName="gender"> Male
-    </label>
-    <label>
-      <input type="radio" value="female" formControlName="gender"> Female
-    </label>
-    <div *ngIf="isRequired('gender')">
-      Gender is required.
-    </div>
-  </div>
-  <button type="submit" [disabled]="signoffForm.invalid">Submit</button>
+  <mat-form-field>
+    <mat-label>Select Secret Question:</mat-label>
+    <mat-select formControlName="secretQuestion">
+      <mat-option *ngFor="let question of questions" [value]="question.type">
+        {{ question.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="isRequired('secretQuestion')"
+      >Question is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field *ngIf="isSecretQuestionIsCustom">
+    <mat-label>Custom Question:</mat-label>
+    <input
+      matInput
+      placeholder="Enter your custom question"
+      formControlName="customQuestion"
+      required
+    />
+    <mat-error *ngIf="isRequired('customQuestion') && isSecretQuestionIsCustom">
+      Custom Question is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Enter your answer"
+      formControlName="answer"
+      required
+    />
+    <mat-error *ngIf="isRequired('answer')">
+      Answer is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-radio-group aria-label="Gender" formControlName="gender">
+    <mat-label>Gender:</mat-label><br />
+    <mat-radio-button style="margin: 10px 0;" value="male"
+      >Male</mat-radio-button
+    >
+    <mat-radio-button style="margin: 10px 0;" value="female"
+      >Female</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <button mat-raised-button type="submit">
+    Submit
+  </button>
 </form>

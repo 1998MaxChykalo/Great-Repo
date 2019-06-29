@@ -1,0 +1,25 @@
+<div
+  style="width: 100%; max-width: 1080px; margin: auto; padding: 10px;"
+  *ngIf="todoDataService.todos$ | async as todoList"
+>
+  <h2>Todo List</h2>
+  <h3>Number Of Todos {{ todoList.length }}</h3>
+  <div class="todo-list__filters">
+    <button mat-raised-button active (click)="setFilter(null)">All</button>
+    <button mat-raised-button (click)="setFilter(false)">Active</button>
+    <button mat-raised-button (click)="setFilter(true)">Completed</button>
+  </div>
+  <mat-list>
+    <mat-list-item
+      style="margin: 30px 0;"
+      *ngFor="let todo of todoList.filter(byCompleted)"
+    >
+      <app-todo-item
+        style="width: 100%"
+        [todo]="todo"
+        (toggleTodo)="toggleTodo($event)"
+        (delete)="deleteTodo($event)"
+      ></app-todo-item>
+    </mat-list-item>
+  </mat-list>
+</div>
